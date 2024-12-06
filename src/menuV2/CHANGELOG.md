@@ -1,6 +1,10 @@
 # Changelog
 
 All changes to this project will be documented in this file.
+## [0.2.3] - 06-12-2024
+
+- Added Validation Requests
+
 ## [0.1.17] - 24-10-2024
 
 - Add /delete to chat

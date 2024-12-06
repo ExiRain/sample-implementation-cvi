@@ -34,6 +34,13 @@
           "en": "History"
         },
         "path": "/history"
+      },
+      {
+        "label": {
+          "et": "Valideerimistaotlused",
+          "en": "Validation Requests"
+        },
+        "path": "/validation-requests"
       }
     ]
   },
