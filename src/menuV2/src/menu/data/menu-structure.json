@@ -37,10 +37,10 @@
       },
       {
         "label": {
-          "et": "Valideerimistaotlused",
-          "en": "Validation Requests"
+          "et": "Valideerimised",
+          "en": "Validations"
         },
-        "path": "/validation-requests"
+        "path": "/validations"
       }
     ]
   },

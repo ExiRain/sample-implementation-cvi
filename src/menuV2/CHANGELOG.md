@@ -3,7 +3,7 @@
 All changes to this project will be documented in this file.
 ## [0.2.3] - 06-12-2024
 
-- Added Validation Requests
+- Added Validations
 
 ## [0.1.17] - 24-10-2024
 
