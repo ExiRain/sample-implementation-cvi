@@ -3,6 +3,7 @@ import { UserInfo } from '../types/userInfo';
 import {CHAT_STATUS, Chat as ChatType, GroupedChat, GroupedPendingChat} from '../types/chat';
 import apiDev from "../services/api-dev.ts";
 import { UserProfileSettings } from '../types/userProfileSettings.ts';
+import { Message } from '../types/message.ts';
 
 type CsaStatusType = "idle" | "offline" | "online";
 
@@ -11,12 +12,14 @@ interface StoreState {
   userId: string;
   activeChats: ChatType[];
   pendingChats: ChatType[];
+  validationMessages: Message[];
   selectedChatId: string | null;
   chatCsaActive: boolean;
   csaStatus: CsaStatusType,
   setCsaStatus: (status: CsaStatusType) => void,
   setActiveChats: (chats: ChatType[]) => void;
   setPendingChats: (chats: ChatType[]) => void;
+  setValidationMessages: (messages: Message[]) => void;
   setUserInfo: (info: UserInfo) => void;
   setSelectedChatId: (id: string | null) => void;
   setChatCsaActive: (active: boolean) => void;
@@ -28,11 +31,14 @@ interface StoreState {
   messagesMap: () => Map<string, number>;
   forwordedChatsLength: () => number;
   pendingChatsLength: () => number;
+  validationMessagesLength: () => number;
   loadActiveChats: () => Promise<void>;
   getGroupedActiveChats: () => GroupedChat;
   getGroupedUnansweredChats: () => GroupedChat;
   loadPendingChats: () => Promise<void>;
+  loadValidationMessages: () => Promise<void>;
   getGroupedPendingChats: () => GroupedPendingChat;
+  getValidationMessages: () => Message[];
   userProfileSettings: UserProfileSettings,
   setUserProfileSettings: (settings: UserProfileSettings) => void,
 }
@@ -42,6 +48,7 @@ const useStore = create<StoreState>((set, get, _) => ({
   userId: '',
   activeChats: [],
   pendingChats: [],
+  validationMessages: [],
   selectedChatId: null,
   chatCsaActive: false,
   userProfileSettings: {
@@ -59,6 +66,7 @@ const useStore = create<StoreState>((set, get, _) => ({
   setUserProfileSettings: (settings) => set({ userProfileSettings: settings }),
   setActiveChats: (chats) => set({ activeChats: chats }),
   setPendingChats: (chats) => set({ pendingChats: chats }),
+  setValidationMessages: (messages) => set({ validationMessages: messages }),
   setUserInfo: (data) => set({ userInfo: data, userId: data?.idCode || '' }),
   setSelectedChatId: (id) => set({ selectedChatId: id }),
   setChatCsaActive: (active) => {
@@ -67,6 +75,7 @@ const useStore = create<StoreState>((set, get, _) => ({
     });
     get().loadActiveChats();
     get().loadPendingChats();
+    get().loadValidationMessages();
   },
   selectedChat: () => {
     const selectedChatId = get().selectedChatId;
@@ -88,6 +97,7 @@ const useStore = create<StoreState>((set, get, _) => ({
   unansweredChatsLength: () => get().unansweredChats().length,
   forwordedChatsLength: () => get().forwordedChats().length,
   pendingChatsLength: () => get().pendingChats.length,
+  validationMessagesLength: () => get().validationMessages.length,
   messagesMap: () => {
     const map = new Map<string, number>();
 
@@ -121,6 +131,11 @@ const useStore = create<StoreState>((set, get, _) => ({
     } else {
       get().setPendingChats(chats);
     }
+  },
+  loadValidationMessages: async () => {
+    const res = await apiDev.get('chats/messages/waiting-validation');
+    const messages: Message[] = res.data.response ?? [];
+    get().setValidationMessages(messages);
   },
   getGroupedActiveChats: () => {
     const activeChats = get().activeChats;
@@ -270,6 +285,9 @@ const useStore = create<StoreState>((set, get, _) => ({
       });
     }
     return grouped;
+  },
+  getValidationMessages: () => {
+    return get().validationMessages;
   },
 }));
 

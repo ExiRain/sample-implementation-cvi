@@ -1,6 +1,10 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [0.1.17] - 06-12-2024
+
+- Added Validation Messages
+
 ## [0.1.16] - 19-11-2024
 
 - Added check for local to ignore token check for developers
