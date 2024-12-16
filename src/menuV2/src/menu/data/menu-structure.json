@@ -347,6 +347,13 @@
           "en": "Delete conversations"
         },
         "path": "/delete-conversations"
+      },
+      {
+        "label": {
+          "et": "SKMi konfiguratsioon",
+          "en": "SKM Configuration"
+        },
+        "path": "/skm-configuration"
       }
     ]
   },
