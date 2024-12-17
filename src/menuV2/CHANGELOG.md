@@ -1,6 +1,11 @@
 # Changelog
 
 All changes to this project will be documented in this file.
+
+## [0.2.4] - 13-12-2024
+
+- Added Skm configration
+
 ## [0.2.3] - 06-12-2024
 
 - Added Validations
@@ -53,11 +58,11 @@ All changes to this project will be documented in this file.
 
 ## [0.1.7] - 27-05-2024
 
-- Fix close menu button 
+- Fix close menu button
 
 ## [0.1.6] - 25-04-2024
 
-- Updated api call addresses 
+- Updated api call addresses
 
 ## [0.1.5] - 27-02-2024
 
