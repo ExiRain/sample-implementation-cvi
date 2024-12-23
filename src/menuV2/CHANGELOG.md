@@ -2,6 +2,10 @@
 
 All changes to this project will be documented in this file.
 
+## [0.2.5] - 23-12-2024
+
+- Updated menu position for model and train model
+
 ## [0.2.4] - 13-12-2024
 
 - Added Skm configration
