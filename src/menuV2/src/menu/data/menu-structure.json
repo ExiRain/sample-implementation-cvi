@@ -153,6 +153,13 @@
       },
       {
         "label": {
+          "et": "Treeni uus mudel",
+          "en": "Train new model"
+        },
+        "path": "/train-new-model"
+      },
+      {
+        "label": {
           "et": "Mudelipank ja analüütika",
           "en": "Modelbank and analytics"
         },
@@ -181,13 +188,6 @@
             "path": "/analytics/testcases"
           }
         ]
-      },
-      {
-        "label": {
-          "et": "Treeni uus mudel",
-          "en": "Train new model"
-        },
-        "path": "/train-new-model"
       }
     ]
   },
